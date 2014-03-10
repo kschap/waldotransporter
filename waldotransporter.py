@@ -5,6 +5,7 @@ Or for more serious purposes, like hiding locations from oppressive governments.
 Who knows...
 """
 import tweepy
+from geopy.geocoders import GoogleV3
 
 """
 Initializes the API.
@@ -23,8 +24,13 @@ api = tweepy.API(auth)
 
 # Making a status. The location part comes later!
 tweet = raw_input("\nWhat's on your mind? ")
-lat = input("\nAlright! Now, enter in the LATITUDE of your \"location\": ")
-longitude = input("And now, your LONGITUDE: ")
+location = raw_input("Enter in a location in which you want to tweet from: ")
+
+#Now, to determine the latitude and longitude of the location, we use geopy.
+engine = GoogleV3()
+location = geolocator.geocode(location)
+lat = location.latitude
+longitude = location.longitude
 
 # Now, we take these three bits of information and mix them all up...
 api.update_status(status=tweet, lat=lat, long=longitude)
