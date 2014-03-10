@@ -28,7 +28,7 @@ location = raw_input("Enter in a location in which you want to tweet from: ")
 
 #Now, to determine the latitude and longitude of the location, we use geopy.
 engine = GoogleV3()
-location = geolocator.geocode(location)
+location = engine.geocode(location)
 lat = location.latitude
 longitude = location.longitude
 
